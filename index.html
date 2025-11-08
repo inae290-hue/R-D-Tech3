@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R&D Tech 브릿지 코디네이터 - 대덕의 기술을 당신의 성공 DNA로</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background: #FFFFFF;
+            color: #1A1A1A;
+            line-height: 1.7;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #E5E5E5;
+            padding: 20px 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #1A1A1A;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #007AFF;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #007AFF;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #007AFF 0%, #0051D5 100%);
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 30px;
+            line-height: 1.3;
+            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero h1 span {
+            color: #A8FF3B;
+            text-shadow: 0 0 30px rgba(168, 255, 59, 0.5);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .cta-primary {
+            display: inline-block;
+            background: #A8FF3B;
+            color: #1A1A1A;
+            padding: 22px 50px;
+            font-size: 18px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(168, 255, 59, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(168, 255, 59, 0.6);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(168, 255, 59, 0.4); }
+            50% { box-shadow: 0 10px 40px rgba(168, 255, 59, 0.6); }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 42px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 20px;
+            color: #1A1A1A;
+        }
+
+        section .subtitle {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Problem Section */
+        .problem {
+            background: #F8F9FA;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .problem-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            border-left: 5px solid #FF3B30;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .problem-card h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #1A1A1A;
+        }
+
+        .problem-card blockquote {
+            font-style: italic;
+            color: #555;
+            border-left: 3px solid #007AFF;
+            padding-left: 20px;
+            margin: 20px 0;
+            line-height: 1.8;
+        }
+
+        .highlight-text {
+            background: linear-gradient(transparent 60%, #A8FF3B 60%);
+            font-weight: 700;
+            padding: 0 3px;
+        }
+
+        /* Solution Section */
+        .solution {
+            background: linear-gradient(135deg, #007AFF15 0%, #007AFF05 100%);
+        }
+
+        .solution-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .step-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0, 122, 255, 0.1);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 122, 255, 0.2);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #007AFF;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0 auto 20px;
+        }
+
+        .step-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #007AFF;
+        }
+
+        /* Benefits Section */
+        .benefits-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 20px;
+            margin-top: 60px;
+        }
+
+        .benefits-table tr {
+            background: white;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .benefits-table tr:hover {
+            transform: translateX(10px);
+        }
+
+        .benefits-table td {
+            padding: 30px;
+            border: none;
+        }
+
+        .benefits-table td:first-child {
+            font-weight: 700;
+            color: #007AFF;
+            font-size: 18px;
+            border-left: 5px solid #007AFF;
+        }
+
+        .benefit-icon {
+            color: #A8FF3B;
+            font-size: 24px;
+            margin-right: 10px;
+        }
+
+        /* Trust Section */
+        .trust {
+            background: #1A1A1A;
+            color: white;
+        }
+
+        .trust h2, .trust .subtitle {
+            color: white;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .trust-card {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #A8FF3B;
+            margin-bottom: 10px;
+        }
+
+        /* Pricing Section */
+        .pricing {
+            background: linear-gradient(135deg, #A8FF3B15 0%, #A8FF3B05 100%);
+        }
+
+        .pricing-card {
+            max-width: 700px;
+            margin: 60px auto 0;
+            background: white;
+            padding: 60px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            border: 3px solid #A8FF3B;
+        }
+
+        .pricing-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .price-badge {
+            display: inline-block;
+            background: #FF3B30;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .price-old {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+
+        .price-new {
+            font-size: 48px;
+            font-weight: 800;
+            color: #007AFF;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin: 40px 0;
+        }
+
+        .pricing-features li {
+            padding: 15px 0;
+            border-bottom: 1px solid #E5E5E5;
+            display: flex;
+            align-items: center;
+        }
+
+        .pricing-features li::before {
+            content: '✓';
+            color: #A8FF3B;
+            font-weight: 900;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #007AFF 0%, #0051D5 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.03) 10px, rgba(255,255,255,0.03) 20px);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 38px;
+            margin-bottom: 30px;
+        }
+
+        .urgency-text {
+            background: rgba(168, 255, 59, 0.2);
+            border: 2px solid #A8FF3B;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 40px auto;
+            max-width: 600px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: #1A1A1A;
+            color: #999;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+            
+            section h2 {
+                font-size: 32px;
+            }
+            
+            nav ul {
+                gap: 20px;
+            }
+            
+            .pricing-card {
+                padding: 40px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#problem">문제</a></li>
+            <li><a href="#solution">솔루션</a></li>
+            <li><a href="#benefits">혜택</a></li>
+            <li><a href="#trust">신뢰</a></li>
+            <li><a href="#pricing">가격</a></li>
+            <li><a href="#cta">신청</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>대덕의 미활용 기술,<br>당신의 <span>'억 소리 나는'</span> 창업 아이템이 됩니다</h1>
+            <p>아이디어만으로는 부족합니다. 잠자고 있는 R&D 기술을 발견하고,<br>청년 창업 성공률을 획기적으로 높이는 3단계 솔루션을 경험하세요.</p>
+            <a href="#cta" class="cta-primary">지금, 핵심 기술 매칭 신청하기</a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="problem">
+        <h2>'기술력'이 부족한 창업은 '성공'할 수 없습니다</h2>
+        <p class="subtitle">과학기술 전공 청년 창업가들이 겪는 가장 치명적인 2가지 문제에 공감합니다</p>
+        
+        <div class="problem-grid">
+            <div class="problem-card">
+                <h3>⚠️ 문제 1: 아이템과 '핵심 기술'의 괴리</h3>
+                <blockquote>
+                    "좋은 아이디어는 있지만, 실제 사업화에 필요한 <span class="highlight-text">검증된 기초기술</span>을 어디서, 어떻게 찾아야 할지 모르겠습니다."
+                </blockquote>
+                <p>연구기관의 기술은 너무 복잡하고, 내 아이템에 적용 가능한지 판단하기 어렵습니다.</p>
+            </div>
+            
+            <div class="problem-card">
+                <h3>⚠️ 문제 2: 기술력은 있지만, '시장성' 없는 기획</h3>
+                <blockquote>
+                    "기술을 확보해도, 이 기술을 기반으로 <span class="highlight-text">수익 모델을 만들고 투자자를 설득</span>할 수 있는 기획력은 또 다른 영역입니다."
+                </blockquote>
+                <p>순수 기술력만으로 승부하는 시대는 끝났습니다. 기술을 시장 언어로 번역할 전문가가 필요합니다.</p>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 60px; font-size: 22px; font-weight: 700; color: #1A1A1A;">
+            당신의 실패는 '기술력'의 문제가 아니라,<br><span style="color: #007AFF;">'기술과 시장을 연결하는 논리적 브릿지'</span>가 없기 때문입니다.
+        </p>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="solution">
+        <h2>R&D Tech 브릿지 코디네이터</h2>
+        <p class="subtitle">대덕의 기술을 당신의 성공 DNA로 변환합니다</p>
+        
+        <div class="solution-steps">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <h3>발굴<br>Discovery</h3>
+                <p>수많은 미활용 기술 중, 당신의 아이템에 <strong>잠재적 시장성</strong>을 극대화할 수 있는 '블루오션 기술'을 선별합니다.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <h3>번역<br>Translation</h3>
+                <p>복잡한 연구 결과를 <strong>'투자자가 이해하는 비즈니스 언어'</strong>와 <strong>'고객이 원하는 가치'</strong>로 명확하게 번역 및 구조화합니다.</p>
+            </div>
+            
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <h3>정립<br>Establishment</h3>
+                <p>확보된 기술을 기반으로 <strong>기술 로드맵(TRM)</strong>과 <strong>초기 BM(Business Model)</strong>을 정립하여 사업화 성공률을 획기적으로 높입니다.</p>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 60px; font-size: 22px; font-weight: 700; color: #007AFF;">
+            더 이상 '운'에 기대지 마십시오.<br>검증된 R&D 기술을 기반으로 창업의 판을 바꾸십시오.
+        </p>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits">
+        <h2>3가지 핵심 성공 혜택</h2>
+        <p class="subtitle">기술 창업의 초기 리스크를 최소화합니다</p>
+        
+        <table class="benefits-table">
+            <tr>
+                <td><span class="benefit-icon">📊</span> 맞춤형 R&D 기술 매칭 리포트</td>
+                <td>당신의 전공/아이디어와 가장 높은 사업화 시너지를 낼 수 있는 연구소/대학의 <strong>특허/기초기술 3건</strong>을 선별하여 상세 분석 리포트를 제공합니다.</td>
+                <td><strong>시간 낭비 없이</strong> 초기 창업 아이템의 <strong>기술적 우위</strong> 확보</td>
+            </tr>
+            <tr>
+                <td><span class="benefit-icon">💼</span> 투자 유치형 사업계획서 기획 멘토링</td>
+                <td>발굴된 기술을 핵심 가치로 포함하는 <strong>정부 지원 사업 또는 초기 투자 유치</strong>에 최적화된 사업 계획서의 논리 흐름 및 기획 멘토링을 제공합니다.</td>
+                <td><strong>성공적인 자금 확보</strong>를 위한 <strong>설득력</strong> 극대화</td>
+            </tr>
+            <tr>
+                <td><span class="benefit-icon">🤝</span> 기술 이전 협의 브릿징</td>
+                <td>기술 보유 기관(연구소, 산학협력단)과의 <strong>기술 이전 협의 과정</strong>에서 발생하는 용어, 가격 협상 등의 복잡한 브릿지 역할을 전문가가 수행합니다.</td>
+                <td><strong>기술 이전 리스크</strong> 및 <strong>불필요한 비용</strong> 최소화</td>
+            </tr>
+        </table>
+    </section>
+
+    <!-- Trust Section -->
+    <section id="trust" class="trust">
+        <h2>대덕연구단지 생태계를 가장 잘 아는 유일한 전문가</h2>
+        <p class="subtitle">대덕연구단지 내 산학연 경력이 최소 10년 이상인 전문가들로 구성</p>
+        
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-number">66%</div>
+                <h3>실제 성과</h3>
+                <p>베타 프로젝트 3건 중 2건이<br><strong>초기 시드 투자 유치</strong> 및<br><strong>정부 과제 선정</strong> 성공</p>
+            </div>
+            
+            <div class="trust-card">
+                <div class="trust-number">3000만원</div>
+                <h3>평균 투자 규모</h3>
+                <p>참여 팀이 확보한<br>평균 자금 규모</p>
+            </div>
+            
+            <div class="trust-card">
+                <div class="trust-number">10년+</div>
+                <h3>전문가 경력</h3>
+                <p>기술사업화 전문 박사,<br>전직 기술거래사,<br>청년 창업 멘토단</p>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 60px; font-size: 20px;">
+            <strong>협력 기관:</strong> 대전 창업진흥원, KAIST 산학협력단과의 네트워크를 통해<br>미활용 기술의 접근성을 확보하고, 가장 신속하고 정확한 정보만을 제공합니다.
+        </p>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <h2>[MVP 1기] Tech 브릿지 스타터 패키지</h2>
+        <p class="subtitle">선착순 5팀 한정 - 기술 기반 창업의 문턱을 낮춥니다</p>
+        
+        <div class="pricing-card">
+            <div class="pricing-header">
+                <div class="price-badge">선착순 5팀 한정 🔥</div>
+                <h3 style="font-size: 28px; margin-bottom: 20px;">Tech 브릿지 스타터</h3>
+                <div>
+                    <span class="price-old">200만원</span>
+                    <span class="price-new">99만원</span>
+                </div>
+                <p style="color: #FF3B30; font-weight: 700; margin-top: 10px;">50% 이상 특별 할인</p>
+            </div>
+            
+            <ul class="pricing-features">
+                <li><strong>맞춤형 기술 3건 매칭 리포트</strong></li>
+                <li><strong>사업계획서 논리 구조 1:1 멘토링 2회</strong></li>
+                <li><strong>기술 이전 브릿징 가이드라인 제공</strong></li>
+                <li><strong>4주 집중 코디네이팅 프로그램</strong></li>
+                <li><strong>추후 R&D 과제 기획 서비스(500만원 상당) 20% 할인 혜택 평생 제공</strong></li>
+            </ul>
+            
+            <div style="background: #F8F9FA; padding: 20px; border-radius: 10px; margin-top: 30px;">
+                <p><strong>신청 조건:</strong> 대전 지역 과학기술 전공 20대 청년으로 구성된<br>예비/초기 창업팀 (3년 이내)</p>
+            </div>
+        </div>
+
+        <p style="text-align: center; margin-top: 40px; font-size: 20px; font-weight: 700; color: #007AFF;">
+            성공적인 기술 확보는 타이밍입니다.<br>특별한 기회를 놓치지 마십시오.
+        </p>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section">
+        <div class="cta-content">
+            <h2>아이디어의 불꽃을 꺼뜨리지 마세요.<br>우리가 기술이라는 '연료'를 넣어드립니다.</h2>
+            <p style="font-size: 20px; margin-bottom: 40px;">대덕의 검증된 미활용 기술은 당신의 창업을 단숨에 다음 단계로 도약시킬 수 있는 강력한 무기입니다.</p>
+            
+            <div class="urgency-text">
+                <p style="font-size: 18px; margin-bottom: 10px;">⏰ 선착순 5팀 마감 시, 대기 접수로 전환됩니다</p>
+                <p style="font-size: 16px;">지금 바로 신청하고, 논리적이고 성공적인 기술 창업의 첫걸음을 떼십시오.</p>
+            </div>
+            
+            <a href="#apply" class="cta-primary" style="margin-top: 30px;">대덕 기술 기반 'Tech 브릿지 스타터' 프로그램 신청</a>
+            
+            <p style="margin-top: 30px; font-size: 16px; opacity: 0.9;">
+                📞 문의: tech-bridge@daejeon.kr | ☎️ 042-XXX-XXXX
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 R&D Tech 브릿지 코디네이터. All rights reserved.</p>
+        <p style="margin-top: 10px; font-size: 14px;">대전광역시 대덕구 | 사업자등록번호: XXX-XX-XXXXX</p>
+    </footer>
+</body>
+</html>
